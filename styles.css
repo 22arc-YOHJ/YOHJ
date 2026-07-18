@@ -142,3 +142,19 @@ input:focus,select:focus,textarea:focus{outline:none;box-shadow:0 0 0 4px rgba(2
 @media (prefers-reduced-motion:reduce){
   .service-card,.contact-card,.expertise-panel{animation:none!important}
 }
+@media (max-width: 980px) {
+  .header,
+  .header.is-scrolled {
+    overflow: visible;
+  }
+
+  .nav {
+    top: calc(100% + 8px);
+    left: 18px;
+    right: 18px;
+    z-index: 100;
+
+    max-height: calc(100vh - 110px);
+    overflow-y: auto;
+  }
+}
