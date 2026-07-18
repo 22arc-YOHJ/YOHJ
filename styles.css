@@ -114,10 +114,59 @@ input:focus,select:focus,textarea:focus{outline:none;box-shadow:0 0 0 4px rgba(2
   .footer-brand img{width:125px;height:68px}
   .core img{width:140px}
 }
+/* Logo YOHJ plus grand et lisible */
+.header {
+  height: 115px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
 .brand img {
+  display: block;
   width: 220px;
   height: 100px;
+  object-fit: contain;
 }
-.header {
-  height: 112px;
+
+.header.is-scrolled {
+  height: 90px;
+}
+
+.header.is-scrolled .brand img {
+  width: 180px;
+  height: 82px;
+}
+
+/* Téléphone */
+@media (max-width: 650px) {
+  .header {
+    height: 100px;
+    padding-inline: 16px;
+  }
+
+  .brand img {
+    width: 175px;
+    height: 88px;
+  }
+
+  .header.is-scrolled {
+    height: 82px;
+  }
+
+  .header.is-scrolled .brand img {
+    width: 150px;
+    height: 72px;
+  }
+
+  .nav {
+    top: 92px;
+  }
+
+  .header.is-scrolled .nav {
+    top: 76px;
+  }
 }
