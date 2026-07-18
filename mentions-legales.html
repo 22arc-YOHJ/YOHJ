@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#050b1b">
+<meta name="description" content="Mentions légales et politique de confidentialité de YOHJ, services informatiques.">
+<title>Mentions légales — YOHJ</title>
+<link rel="icon" href="assets/favicon.svg">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:#050815;color:#edf5ff;
+    font-family:Inter,Arial,sans-serif;line-height:1.7;
+    overflow-x:hidden;-webkit-font-smoothing:antialiased;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:-3;
+    background:
+      radial-gradient(circle at 15% 15%,rgba(0,112,255,.15),transparent 32%),
+      radial-gradient(circle at 85% 25%,rgba(0,214,255,.08),transparent 28%),
+      linear-gradient(180deg,#050815,#061126 48%,#040817);
+  }
+  .wrap{max-width:840px;margin:0 auto;padding:0 clamp(22px,6vw,40px)}
+
+  /* ---------- en-tête ---------- */
+  .header{
+    height:88px;position:sticky;top:0;z-index:20;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:0 clamp(22px,6vw,92px);
+    background:rgba(5,8,21,.72);backdrop-filter:blur(18px);
+    border-bottom:1px solid rgba(255,255,255,.07);
+  }
+  .header img{display:block;width:118px;height:68px;object-fit:contain}
+  .back{
+    color:#b8c7db;text-decoration:none;font-size:.92rem;font-weight:700;
+    padding:12px 18px;border:1px solid rgba(80,163,255,.38);
+    border-radius:12px;background:rgba(20,104,255,.08);
+    transition:color .2s,border-color .2s;white-space:nowrap;
+  }
+  .back:hover{color:#fff;border-color:#1676f5}
+
+  /* ---------- titre ---------- */
+  .head{padding:72px 0 44px;border-bottom:1px solid rgba(255,255,255,.07)}
+  .label{
+    letter-spacing:.16em;text-transform:uppercase;color:#62a9ff;
+    font-size:.74rem;font-weight:800;margin-bottom:18px;
+  }
+  h1{font-size:clamp(2rem,5vw,2.9rem);line-height:1.15;font-weight:800;letter-spacing:-.02em}
+  .head p{color:#91a3ba;margin-top:16px;max-width:60ch}
+
+  /* ---------- sections ---------- */
+  section{padding:46px 0;border-bottom:1px solid rgba(255,255,255,.07)}
+  section:last-of-type{border-bottom:0}
+  h2{
+    font-size:1.35rem;font-weight:800;letter-spacing:-.01em;
+    margin-bottom:22px;display:flex;align-items:baseline;gap:14px;
+  }
+  h2 .num{color:#62a9ff;font-size:.78rem;font-weight:800;letter-spacing:.1em;font-variant-numeric:tabular-nums}
+  h3{font-size:1rem;font-weight:700;margin:26px 0 8px}
+  p{color:#91a3ba;margin-bottom:14px}
+  p strong{color:#edf5ff;font-weight:700}
+  a{color:#62a9ff}
+  ul{list-style:none;margin:0 0 14px}
+  li{color:#91a3ba;padding-left:22px;position:relative;margin-bottom:9px}
+  li::before{content:"—";position:absolute;left:0;color:#62a9ff;opacity:.7}
+
+  /* ---------- fiche identité ---------- */
+  .card{
+    padding:25px;border:1px solid rgba(93,163,255,.24);border-radius:27px;
+    background:linear-gradient(145deg,rgba(11,24,51,.92),rgba(5,13,29,.76));
+  }
+  .row{
+    display:grid;grid-template-columns:200px 1fr;gap:10px 20px;
+    padding:13px 0;border-bottom:1px solid rgba(255,255,255,.05);align-items:baseline;
+  }
+  .row:last-child{border-bottom:0}
+  .row dt{color:#5c7897;font-size:.67rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+  .row dd{color:#edf5ff;font-size:.92rem}
+  @media(max-width:650px){.row{grid-template-columns:1fr;gap:4px}}
+
+
+  /* ---------- pied ---------- */
+  footer{
+    padding:38px 0;color:#6e829b;font-size:.8rem;
+    border-top:1px solid rgba(255,255,255,.07);
+  }
+  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  footer a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.18)}
+  footer a:hover{color:#b8c7db;border-color:#62a9ff}
+
+  :focus-visible{outline:2px solid #62a9ff;outline-offset:3px;border-radius:4px}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <a href="index.html#accueil" aria-label="YOHJ, accueil">
+    <img src="assets/logo-concept-a.svg" alt="Logo YOHJ">
+  </a>
+  <a class="back" href="index.html#accueil">← Retour au site</a>
+</header>
+
+<div class="head">
+  <div class="wrap">
+    <p class="label">Informations légales</p>
+    <h1>Mentions légales &amp; confidentialité.</h1>
+    <p>Informations publiées conformément à la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique et au Règlement général sur la protection des données.</p>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <section>
+    <h2><span class="num">01</span> Éditeur du site</h2>
+    <div class="card">
+      <dl>
+        <div class="row"><dt>Nom commercial</dt><dd>YOHJ</dd></div>
+        <div class="row"><dt>Éditeur</dt><dd>Marc ROUSSEAU</dd></div>
+        <div class="row"><dt>Statut</dt><dd>Entrepreneur individuel — micro-entrepreneur (micro-BIC)</dd></div>
+        <div class="row"><dt>Activité</dt><dd>Conseil en systèmes et logiciels informatiques</dd></div>
+        <div class="row"><dt>Adresse</dt><dd>13 rue des Raguins, 77124 Villenoy, France</dd></div>
+        <div class="row"><dt>SIREN</dt><dd>106 691 850</dd></div>
+        <div class="row"><dt>Code APE</dt><dd>6202A</dd></div>
+        <div class="row"><dt>TVA</dt><dd>TVA non applicable — article 293 B du CGI</dd></div>
+        <div class="row"><dt>Téléphone</dt><dd><a href="tel:+33684410467">06 84 41 04 67</a></dd></div>
+        <div class="row"><dt>E-mail</dt><dd><a href="mailto:22arc.yohj@gmail.com">22arc.yohj@gmail.com</a></dd></div>
+        <div class="row"><dt>Directeur de la publication</dt><dd>Marc ROUSSEAU</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">02</span> Hébergeur</h2>
+    <div class="card">
+      <dl>
+        <div class="row"><dt>Hébergeur</dt><dd>GitHub, Inc. — GitHub Pages</dd></div>
+        <div class="row"><dt>Adresse</dt><dd>88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis</dd></div>
+        <div class="row"><dt>Site</dt><dd><a href="https://github.com" rel="noopener">github.com</a></dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">03</span> Propriété intellectuelle</h2>
+    <p>L'ensemble des contenus de ce site — textes, logo, éléments graphiques, structure et code — est la propriété exclusive de YOHJ, sauf mention contraire. Toute reproduction, représentation ou adaptation, totale ou partielle, sans autorisation écrite préalable est interdite.</p>
+    <p>Le logo et le nom YOHJ ne peuvent être utilisés sans accord préalable.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">04</span> Données personnelles</h2>
+
+    <h3>Ce que le formulaire collecte</h3>
+    <p>Le formulaire de contact recueille votre <strong>nom</strong>, votre <strong>adresse e-mail</strong>, le <strong>service concerné</strong> et le contenu de votre <strong>message</strong>.</p>
+
+    <h3>Pourquoi</h3>
+    <p>Ces informations servent uniquement à répondre à votre demande et à établir un devis. Elles ne sont ni vendues, ni cédées, ni utilisées à des fins publicitaires.</p>
+
+    <h3>Comment</h3>
+    <p>Le formulaire ne transmet rien à ce site : il ouvre votre application de messagerie avec un message prérempli, que vous envoyez vous-même. Aucune donnée n'est stockée sur ce site. Vos messages parviennent à la boîte <a href="mailto:22arc.yohj@gmail.com">22arc.yohj@gmail.com</a>, hébergée par Google.</p>
+
+    <h3>Base légale</h3>
+    <p>Votre consentement, matérialisé par l'envoi volontaire de votre message (article 6.1.a du RGPD), et l'exécution de mesures précontractuelles prises à votre demande (article 6.1.b).</p>
+
+    <h3>Conservation</h3>
+    <p>Les demandes sans suite sont conservées 12 mois. Les échanges liés à une prestation réalisée sont conservés pendant la durée légale applicable aux documents commerciaux.</p>
+
+    <h3>Vos droits</h3>
+    <p>Vous disposez d'un droit d'accès, de rectification, d'effacement, de limitation, d'opposition et de portabilité sur vos données. Pour l'exercer, écrivez à <a href="mailto:22arc.yohj@gmail.com">22arc.yohj@gmail.com</a>. Une réponse vous parviendra dans un délai maximal d'un mois.</p>
+    <p>En cas de désaccord, vous pouvez saisir la CNIL : <a href="https://www.cnil.fr" rel="noopener">www.cnil.fr</a>.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">05</span> Cookies</h2>
+    <p>Ce site ne dépose aucun cookie et n'utilise aucun outil de mesure d'audience. Aucune bannière de consentement n'est donc nécessaire.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">06</span> Responsabilité</h2>
+    <p>YOHJ s'efforce de maintenir les informations de ce site exactes et à jour, sans garantir qu'elles soient exemptes d'erreur ou d'omission. Les liens vers des sites tiers n'engagent pas la responsabilité de YOHJ quant à leur contenu.</p>
+    <p>Le droit français s'applique au présent site. Tout litige relève de la compétence des tribunaux français.</p>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="year"></span> YOHJ — La technologie au service de votre réussite.</span>
+    <span>Dernière mise à jour : 18/07/2026</span>
+  </div>
+</footer>
+
+<script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+</body>
+</html>
