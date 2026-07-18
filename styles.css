@@ -114,7 +114,6 @@ input:focus,select:focus,textarea:focus{outline:none;box-shadow:0 0 0 4px rgba(2
   .footer-brand img{width:125px;height:68px}
   .core img{width:140px}
 }
-@media(prefers-reduced-motion:reduce){.header::before{display:none}}
 .logo img {
   height: 1940px;
   width: auto;
