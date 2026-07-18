@@ -114,7 +114,10 @@ input:focus,select:focus,textarea:focus{outline:none;box-shadow:0 0 0 4px rgba(2
   .footer-brand img{width:125px;height:68px}
   .core img{width:140px}
 }
-.logo img {
-  height: 1940px;
-  width: auto;
+.brand img {
+  width: 220px;
+  height: 100px;
+}
+.header {
+  height: 112px;
 }
