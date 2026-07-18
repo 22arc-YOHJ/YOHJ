@@ -1,0 +1,23 @@
+/* YOHJ — « Flux de données » : styles du fond animé
+   La section qui porte data-circuit devient le conteneur du canvas ;
+   son contenu passe automatiquement au-dessus de l'animation. */
+
+[data-circuit] {
+  position: relative;
+  overflow: hidden;
+}
+
+[data-circuit] > .yohj-circuit {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 0;
+  pointer-events: none;
+}
+
+[data-circuit] > :not(.yohj-circuit) {
+  position: relative;
+  z-index: 1;
+}
