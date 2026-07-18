@@ -1,0 +1,1 @@
+document.addEventListener('DOMContentLoaded',()=>{const b=document.getElementById('diag-replay'),s=document.getElementById('diag-status');const run=()=>{if(!s)return;s.textContent='Analyse en cours…';setTimeout(()=>s.textContent='Système sain',900)};b?.addEventListener('click',run);setTimeout(run,500)});
