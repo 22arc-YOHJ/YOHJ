@@ -73,7 +73,7 @@ input:focus,select:focus,textarea:focus{outline:none;box-shadow:0 0 0 4px rgba(2
    ========================================================= */
 .header{
   height:100px;
-  overflow:hidden;
+  overflow:visible;
   isolation:isolate;
   padding-inline:clamp(24px,6vw,100px);
   transition:height .35s var(--ease-out),background .35s,border-color .35s,box-shadow .35s;
