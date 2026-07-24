@@ -1,0 +1,208 @@
+/* conception.css — hologramme de conception d'un site : les couches d'une page
+   s'écartent, se font passer en revue, puis se referment sur le site en ligne.
+   Wireframe 3D maison, aucune bibliothèque, aucun asset. */
+
+.cq {
+  --cq-fond: #04070d;
+  --cq-cyan: #35e8ff;
+  --cq-bleu: #4f8dff;
+  --cq-accent: #b58cff;
+  --cq-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  position: relative;
+  background: var(--cq-fond);
+}
+
+.cq__rail { position: relative; }
+
+/* Hauteur : --cq-vh est posée par le script à partir de window.innerHeight.
+   C'est le seul repère fiable partout ; svh prend le relais s'il existe. */
+.cq__ecran {
+  position: sticky;
+  top: 0;
+  height: calc(var(--cq-vh, 1vh) * 100);
+  overflow: hidden;
+}
+
+@supports (height: 100svh) {
+  .cq__ecran { height: 100svh; }
+}
+
+.cq__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.cq__scan {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(53, 232, 255, 0.045) 0 1px,
+    transparent 1px 3px
+  );
+}
+
+.cq__lueur {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(58% 44% at 50% 42%, rgba(79, 141, 255, 0.16), transparent 72%);
+}
+
+.cq__cadre {
+  position: absolute;
+  inset: clamp(0.9rem, 3vw, 2rem);
+  pointer-events: none;
+}
+
+.cq__coin {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border: 1px solid rgba(53, 232, 255, 0.5);
+}
+
+.cq__coin--hg { top: 0; left: 0; border-right: 0; border-bottom: 0; }
+.cq__coin--hd { top: 0; right: 0; border-left: 0; border-bottom: 0; }
+.cq__coin--bg { bottom: 0; left: 0; border-right: 0; border-top: 0; }
+.cq__coin--bd { bottom: 0; right: 0; border-left: 0; border-top: 0; }
+
+.cq__tele {
+  position: absolute;
+  top: clamp(1.4rem, 4vw, 2.6rem);
+  left: clamp(1.4rem, 4vw, 2.6rem);
+  font-family: var(--cq-mono);
+  font-size: 0.66rem;
+  line-height: 1.9;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(158, 210, 230, 0.72);
+  pointer-events: none;
+}
+
+.cq__tele b { color: var(--cq-cyan); font-weight: 500; font-variant-numeric: tabular-nums; }
+.cq__tele span { color: rgba(118, 156, 176, 0.6); }
+
+/* Voile : garantit la lisibilité du texte par-dessus le wireframe. */
+.cq__voile {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 66%;
+  pointer-events: none;
+  background: linear-gradient(to top,
+    #04070d 16%,
+    rgba(4, 7, 13, 0.95) 44%,
+    rgba(4, 7, 13, 0.62) 74%,
+    transparent 100%);
+}
+
+.cq__textes {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(3.4rem + env(safe-area-inset-bottom));
+}
+
+.cq__etape {
+  position: absolute;
+  left: clamp(1.4rem, 5vw, 3rem);
+  right: clamp(1.4rem, 5vw, 3rem);
+  bottom: 0;
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+.cq__code {
+  font-family: var(--cq-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--cq-cyan);
+  margin: 0 0 0.7rem;
+}
+
+.cq__titre {
+  font-size: clamp(1.7rem, 5.6vw, 2.9rem);
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.6rem;
+  color: #eef7ff;
+  text-wrap: balance;
+}
+
+.cq__texte {
+  font-size: clamp(0.95rem, 2.3vw, 1.08rem);
+  line-height: 1.55;
+  margin: 0;
+  color: #93a9c2;
+  max-width: 32rem;
+}
+
+.cq__hud {
+  position: absolute;
+  left: clamp(1.4rem, 5vw, 3rem);
+  right: clamp(1.4rem, 5vw, 3rem);
+  bottom: max(1.5rem, env(safe-area-inset-bottom));
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-family: var(--cq-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
+  color: #6f8fa3;
+  pointer-events: none;
+}
+
+.cq__barre {
+  position: relative;
+  flex: 1;
+  height: 1px;
+  background: rgba(53, 232, 255, 0.18);
+}
+
+.cq__remplissage {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 0%;
+  background: var(--cq-cyan);
+  box-shadow: 0 0 12px var(--cq-cyan);
+}
+
+.cq__tc { font-variant-numeric: tabular-nums; color: #b9dbe8; }
+
+.cq--statique .cq__rail { height: auto !important; }
+.cq--statique .cq__ecran { position: static; height: 70vh; }
+.cq--statique .cq__textes { position: static; padding: 2rem clamp(1.4rem, 5vw, 3rem); }
+.cq--statique .cq__etape { position: static; opacity: 1; padding: 1.2rem 0; }
+.cq--statique .cq__hud { display: none; }
+
+/* Petits écrans : le texte passe avant l'image. */
+@media (max-width: 480px), (max-height: 720px) {
+  .cq__titre { font-size: clamp(1.35rem, 5.6vw, 1.85rem); }
+  .cq__texte { font-size: 0.92rem; line-height: 1.45; }
+  .cq__code { font-size: 0.6rem; margin-bottom: 0.5rem; }
+  .cq__tele { font-size: 0.6rem; line-height: 1.7; }
+  .cq__voile { height: 74%; }
+}
+
+/* Très petits écrans : on coupe le paragraphe plutôt que de le laisser déborder. */
+@media (max-height: 640px) {
+  .cq__texte {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .cq__tele { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cq__scan { display: none; }
+}
