@@ -1,0 +1,226 @@
+/* ============================================================
+   YOHJ — Fusée de retour en haut
+   fusee.css  ·  autonome, tous les sélecteurs préfixés .fusee
+   ============================================================ */
+
+.fusee-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .5rem;
+  padding: 2.2rem 0 1.4rem;
+}
+
+/* Repli si aucune cible n'est trouvée dans la page : coin bas-gauche,
+   pour ne pas croiser le bouton de la console. */
+.fusee-zone--flottante {
+  position: fixed;
+  left: 18px;
+  bottom: 18px;
+  z-index: 9997;
+  padding: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease;
+}
+.fusee-zone--flottante.est-visible { opacity: 1; pointer-events: auto; }
+
+.fusee {
+  position: relative;
+  display: block;
+  width: 58px;
+  height: 84px;
+  padding: 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  overflow: visible;
+  transition: transform .25s cubic-bezier(.2, .9, .3, 1);
+}
+
+.fusee:hover, .fusee:focus-visible { transform: translateY(-6px); }
+.fusee:focus-visible { outline: 2px solid #35c6ff; outline-offset: 6px; border-radius: 8px; }
+
+.fusee__svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  /* La fusée respire en permanence : au doigt, il n'y a pas de survol,
+     donc rien ne doit dépendre du hover pour la rendre vivante. */
+  animation: fusee-flotte 3.6s ease-in-out infinite;
+}
+
+@keyframes fusee-flotte {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50%      { transform: translateY(-7px) rotate(1deg); }
+}
+
+/* Pendant la mise à feu et le décollage, le flottement s'arrête */
+.fusee.est-allumee .fusee__svg,
+.fusee.est-partie .fusee__svg { animation: none; }
+
+/* Halo au sol, sous la tuyère */
+.fusee::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  width: 46px;
+  height: 16px;
+  margin-left: -23px;
+  background: radial-gradient(ellipse, rgba(255, 180, 84, .38), rgba(255, 180, 84, 0) 70%);
+  pointer-events: none;
+  animation: fusee-halo 3.6s ease-in-out infinite;
+}
+
+@keyframes fusee-halo {
+  0%, 100% { opacity: .5; transform: scale(.85); }
+  50%      { opacity: .95; transform: scale(1.1); }
+}
+
+/* ---------- Flamme ---------- */
+
+.fusee__flamme {
+  transform-origin: 32px 74px;
+  opacity: .9;
+  animation: fusee-vacille .2s infinite alternate;
+}
+.fusee:hover .fusee__flamme,
+.fusee:focus-visible .fusee__flamme { opacity: 1; animation-duration: .1s; }
+
+@keyframes fusee-vacille {
+  from { transform: scaleY(.72) scaleX(.94); }
+  to   { transform: scaleY(1.12) scaleX(1.04); }
+}
+
+/* ---------- Décollage ---------- */
+
+.fusee.est-allumee { animation: fusee-tremble .34s ease-in-out; }
+.fusee.est-allumee .fusee__flamme { opacity: 1; animation: fusee-vacille .07s infinite alternate; }
+
+@keyframes fusee-tremble {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-2px) rotate(-1.5deg); }
+  40% { transform: translateX(2px) rotate(1.5deg); }
+  60% { transform: translateX(-2px) rotate(-1deg); }
+  80% { transform: translateX(2px) rotate(1deg); }
+}
+
+.fusee.est-partie {
+  animation: fusee-decolle .95s cubic-bezier(.55, 0, .85, .2) forwards;
+}
+.fusee.est-partie .fusee__flamme { opacity: 1; }
+
+@keyframes fusee-decolle {
+  0%   { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-120vh) scale(.55); opacity: 0; }
+}
+
+.fusee.est-revenue { animation: fusee-revient .55s cubic-bezier(.2, .9, .3, 1) both; }
+
+@keyframes fusee-revient {
+  from { transform: translateY(46px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+/* ---------- Fumée au sol ---------- */
+
+.fusee__fumee {
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.fusee__bouffee {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;
+  background: radial-gradient(circle, rgba(198, 220, 243, .55), rgba(198, 220, 243, 0) 70%);
+  border-radius: 50%;
+  opacity: 0;
+}
+
+.est-en-vol .fusee__bouffee { animation: fusee-bouffee .8s ease-out forwards; }
+.est-en-vol .fusee__bouffee:nth-child(2) { animation-delay: .06s; }
+.est-en-vol .fusee__bouffee:nth-child(3) { animation-delay: .12s; }
+.est-en-vol .fusee__bouffee:nth-child(4) { animation-delay: .18s; }
+
+@keyframes fusee-bouffee {
+  0%   { opacity: .85; transform: translate(0, 0) scale(.4); }
+  100% { opacity: 0; transform: translate(var(--derive, 0px), 14px) scale(2.6); }
+}
+
+/* ---------- Légende ---------- */
+
+.fusee-legende {
+  font: 600 .68rem/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #6c88ad;
+  transition: color .2s ease;
+}
+.fusee-zone:hover .fusee-legende { color: #35c6ff; }
+.fusee-zone--flottante .fusee-legende { display: none; }
+
+/* ---------- Mouvement réduit ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .fusee, .fusee__flamme { transition: none; }
+  .fusee__svg, .fusee::after { animation: none; }
+  .fusee__flamme { animation: none; opacity: 1; }
+  .fusee.est-allumee, .fusee.est-partie, .fusee.est-revenue { animation: none; }
+  .est-en-vol .fusee__bouffee { animation: none; }
+}
+
+/* ---------- Copie en vol ---------- */
+
+.fusee-vol {
+  position: fixed;
+  z-index: 9996;
+  pointer-events: none;
+  will-change: transform;
+  filter: drop-shadow(0 0 18px rgba(255, 180, 84, .35));
+}
+.fusee-vol .fusee__svg { animation: none; }
+.fusee-vol::after { opacity: 0; }
+.fusee-vol .fusee__flamme { opacity: 1; animation-duration: .06s; }
+.fusee-vol .fusee__fumee { display: none; }
+
+.fusee-vol.est-arrivee { animation: fusee-pose .6s cubic-bezier(.2, .9, .3, 1) forwards; }
+.fusee-vol.est-arrivee .fusee__flamme { opacity: 0; transition: opacity .3s ease; }
+
+@keyframes fusee-pose {
+  0%   { opacity: 1; }
+  35%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* ---------- Traînée laissée pendant le vol ---------- */
+
+.fusee-trainee {
+  position: fixed;
+  z-index: 9995;
+  width: 14px;
+  height: 14px;
+  margin: -7px 0 0 -7px;
+  pointer-events: none;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 200, 140, .5), rgba(198, 220, 243, .18) 45%, transparent 72%);
+  animation: fusee-dissipe .85s ease-out forwards;
+}
+
+@keyframes fusee-dissipe {
+  0%   { opacity: .8; transform: scale(.5); }
+  100% { opacity: 0; transform: scale(3.2) translateY(10px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fusee-vol, .fusee-trainee { display: none !important; }
+}
+
+@media print { .fusee-zone { display: none !important; } }
