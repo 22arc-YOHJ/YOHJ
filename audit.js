@@ -16,7 +16,7 @@
 
   var MARKUP =
     '<div class="audit__inner">' +
-      '<p class="audit__eyebrow">Bilan express</p>' +
+      '<p class="audit__eyebrow">04 — Bilan express</p>' +
       '<h2 class="audit__title" id="audit-title">' +
         'Votre poste, examiné pendant que vous lisez cette page.' +
       '</h2>' +
