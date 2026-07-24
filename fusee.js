@@ -85,11 +85,6 @@
     </button>
     ${CONFIG.legende ? `<span class="fusee-legende">${CONFIG.legende}</span>` : ''}`;
 
-  if (CONFIG.logoARemplacer) {
-    const ancien = document.querySelector(CONFIG.logoARemplacer);
-    if (ancien) ancien.style.display = 'none';
-  }
-
   function trouver(liste) {
     for (const sel of liste) {
       const el = document.querySelector(sel);
@@ -98,8 +93,14 @@
     return null;
   }
 
+  // Le logo désigné cède sa place : la fusée s'insère exactement là où il était.
+  const logo = CONFIG.logoARemplacer ? document.querySelector(CONFIG.logoARemplacer) : null;
+  if (logo) logo.style.display = 'none';
+
   const hote = trouver(CONFIG.cible);
-  if (hote) {
+  if (logo && logo.parentNode) {
+    logo.parentNode.insertBefore(zone, logo);
+  } else if (hote) {
     hote.appendChild(zone);
   } else {
     zone.classList.add('fusee-zone--flottante');
