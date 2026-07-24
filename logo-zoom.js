@@ -70,8 +70,15 @@
   var closeBtn = overlay.querySelector('.lz-close');
 
   overlay.querySelector('.lz-caption').textContent = CONFIG.caption;
-  image.src = CONFIG.largeSrc || source.currentSrc || source.src;
   if (source.alt) image.alt = source.alt;
+
+  /* Repli : si largeSrc est introuvable (404), on reprend l'image
+     de l'en-tête plutôt que d'afficher une image cassée. */
+  var fallback = source.currentSrc || source.src;
+  image.addEventListener('error', function () {
+    if (image.getAttribute('src') !== fallback) image.src = fallback;
+  });
+  image.src = CONFIG.largeSrc || fallback;
 
   var open = false;
   var scrollY = 0;
