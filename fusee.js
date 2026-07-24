@@ -23,7 +23,7 @@
 
     // Le logo du bas de page à remplacer. Laisse '' pour ne rien masquer.
     // Exemple : '.footer-logo' ou 'footer img'
-    logoARemplacer: '',
+    logoARemplacer: '.footer-brand',
 
     // Mot sous la fusée. Mets '' pour n'afficher que le dessin.
     legende: 'Retour en haut',
