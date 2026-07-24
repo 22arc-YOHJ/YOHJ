@@ -17,7 +17,7 @@
       'header img'
     ],
     largeSrc: 'assets/logo-boot.webp',
-    caption: 'la technologie au service de votre réussite',
+    caption: '',        /* laisse vide pour aucun texte sous le logo */
     shards: 12          /* éclats radiaux à l'impact */
   };
 
@@ -69,7 +69,13 @@
   var image = overlay.querySelector('.lz-img');
   var closeBtn = overlay.querySelector('.lz-close');
 
-  overlay.querySelector('.lz-caption').textContent = CONFIG.caption;
+  var caption = overlay.querySelector('.lz-caption');
+  if (CONFIG.caption) {
+    caption.textContent = CONFIG.caption;
+  } else {
+    caption.parentNode.removeChild(caption);
+  }
+
   if (source.alt) image.alt = source.alt;
 
   /* Repli : si largeSrc est introuvable (404), on reprend l'image
