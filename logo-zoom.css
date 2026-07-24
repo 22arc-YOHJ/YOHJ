@@ -1,0 +1,226 @@
+/* ============================================================
+   YOHJ — logo-zoom.css  (variante ONDE DE CHOC)
+   Le logo s'écrase au centre : anneau de choc, secousse,
+   flash chromatique, puis repos. Environ 900 ms.
+   ============================================================ */
+
+.lz-overlay {
+  --lz-accent: #4ea8ff;
+  --lz-accent-soft: #9be8ff;
+  --lz-ink: #d7e8ff;
+  --lz-max: 440px;
+  --lz-open: 260ms;         /* chute du logo : court et sec */
+
+  position: fixed;
+  inset: 0;
+  z-index: 9500;
+  display: grid;
+  place-items: center;
+  padding: 10vh 6vw;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 140ms ease;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  -webkit-tap-highlight-color: transparent;
+  overflow: hidden;
+}
+
+.lz-overlay.is-open { opacity: 1; pointer-events: auto; }
+
+.lz-scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(3, 7, 16, .95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* --- flash d'impact --- */
+
+.lz-flash {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, #cfeaff, rgba(78, 168, 255, .4) 40%, transparent 68%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.lz-overlay.is-hit .lz-flash { animation: lz-flash 340ms ease-out forwards; }
+
+@keyframes lz-flash {
+  0%   { opacity: .85; }
+  100% { opacity: 0; }
+}
+
+/* --- secousse --- */
+
+.lz-shake {
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.lz-overlay.is-hit .lz-shake { animation: lz-shake 300ms cubic-bezier(.36, .07, .19, .97) both; }
+
+@keyframes lz-shake {
+  0%   { transform: translate(0, 0); }
+  12%  { transform: translate(-9px, 5px) rotate(-.6deg); }
+  26%  { transform: translate(8px, -6px) rotate(.5deg); }
+  42%  { transform: translate(-6px, -3px) rotate(-.3deg); }
+  58%  { transform: translate(5px, 4px) rotate(.25deg); }
+  74%  { transform: translate(-3px, 2px); }
+  88%  { transform: translate(2px, -1px); }
+  100% { transform: translate(0, 0); }
+}
+
+/* --- anneaux de choc --- */
+
+.lz-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(70vw, 380px);
+  aspect-ratio: 1;
+  margin: 0;
+  border-radius: 50%;
+  border: 3px solid var(--lz-accent-soft);
+  transform: translate(-50%, -50%) scale(.1);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.lz-ring--2 { border-width: 1px; border-color: rgba(78, 168, 255, .8); }
+
+.lz-overlay.is-hit .lz-ring { animation: lz-blast 620ms cubic-bezier(.15, .8, .3, 1) forwards; }
+.lz-overlay.is-hit .lz-ring--2 { animation-delay: 90ms; animation-duration: 760ms; }
+
+@keyframes lz-blast {
+  0%   { opacity: 0; transform: translate(-50%, -50%) scale(.1); }
+  8%   { opacity: 1; }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(3.2); }
+}
+
+/* --- éclats radiaux --- */
+
+.lz-shards {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.lz-shard {
+  position: absolute;
+  width: 2px;
+  height: 74px;
+  margin-left: -1px;
+  background: linear-gradient(to bottom, transparent, var(--lz-accent-soft));
+  transform-origin: 50% 0;
+  transform: rotate(var(--a)) translateY(40px);
+  opacity: 0;
+}
+
+.lz-overlay.is-hit .lz-shard { animation: lz-shard 520ms cubic-bezier(.1, .7, .2, 1) forwards; }
+
+@keyframes lz-shard {
+  0%   { opacity: 0; transform: rotate(var(--a)) translateY(40px); }
+  14%  { opacity: .9; }
+  100% { opacity: 0; transform: rotate(var(--a)) translateY(215px); }
+}
+
+/* --- le logo --- */
+
+.lz-frame {
+  position: relative;
+  margin: 0;
+  width: min(76vw, var(--lz-max));
+  will-change: transform;
+}
+
+.lz-punch { position: relative; }
+
+.lz-overlay.is-hit .lz-punch { animation: lz-punch 420ms cubic-bezier(.2, 1.6, .35, 1) both; }
+
+@keyframes lz-punch {
+  0%   { transform: scale(1.16, .86); }
+  40%  { transform: scale(.97, 1.03); }
+  100% { transform: scale(1, 1); }
+}
+
+.lz-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 0 28px rgba(78, 168, 255, .5));
+}
+
+.lz-overlay.is-hit .lz-img { animation: lz-split 260ms steps(3, end) 1; }
+
+@keyframes lz-split {
+  0%   { filter: drop-shadow(-14px 0 rgba(255, 60, 180, .9)) drop-shadow(14px 0 rgba(80, 255, 255, .9)); }
+  50%  { filter: drop-shadow(6px 0 rgba(80, 255, 255, .7)) drop-shadow(-6px 0 rgba(255, 60, 180, .7)); }
+  100% { filter: drop-shadow(0 0 28px rgba(78, 168, 255, .5)); }
+}
+
+/* --- légende --- */
+
+.lz-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -44px;
+  margin: 0;
+  text-align: center;
+  color: var(--lz-accent-soft);
+  font-size: clamp(.58rem, 2.3vw, .68rem);
+  letter-spacing: .32em;
+  text-transform: uppercase;
+  opacity: 0;
+}
+
+.lz-overlay.is-hit .lz-caption { animation: lz-cap 420ms 300ms ease forwards; }
+
+@keyframes lz-cap {
+  from { opacity: 0; letter-spacing: .5em; }
+  to   { opacity: .8; letter-spacing: .32em; }
+}
+
+/* --- bouton fermer --- */
+
+.lz-close {
+  position: absolute;
+  top: max(18px, env(safe-area-inset-top));
+  right: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: rgba(6, 14, 28, .8);
+  border: 1px solid rgba(78, 168, 255, .45);
+  border-radius: 2px;
+  color: var(--lz-ink);
+  font: inherit;
+  font-size: .7rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  opacity: 0;
+  transition: border-color 180ms ease, color 180ms ease;
+}
+
+.lz-overlay.is-hit .lz-close { animation: lz-cap 300ms 260ms ease forwards; }
+.lz-close:hover, .lz-close:focus-visible { border-color: var(--lz-accent-soft); color: #fff; }
+.lz-close:focus-visible { outline: 2px solid var(--lz-accent-soft); outline-offset: 3px; }
+
+[data-logo-zoom-target] { cursor: zoom-in; }
+
+@media (prefers-reduced-motion: reduce) {
+  .lz-overlay, .lz-overlay * {
+    animation: none !important;
+    transition: opacity 160ms ease !important;
+  }
+  .lz-caption, .lz-close { opacity: 1; }
+  .lz-ring, .lz-shard, .lz-flash { display: none; }
+}
