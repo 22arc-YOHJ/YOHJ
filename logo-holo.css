@@ -91,7 +91,100 @@
 .lh--statique .lh__rail { height: auto !important; }
 .lh--statique .lh__ecran { position: static; height: 78vh; }
 .lh--statique .lh__hud { display: none; }
+.lh--statique .lh__copier {
+  position: static;
+  display: block;
+  margin: 1.5rem auto 0;
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
+}
 
 @media (prefers-reduced-motion: reduce) {
   .lh__scan { display: none; }
+}
+
+/* ---------- prise en main ---------- */
+
+/* pan-y : le doigt fait toujours défiler la page verticalement, mais les
+   gestes horizontaux nous reviennent pour faire tourner l'objet. */
+.lh__canvas {
+  touch-action: pan-y;
+  cursor: grab;
+}
+
+.lh__canvas:active { cursor: grabbing; }
+
+.lh__prise {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 4.6rem;
+  text-align: center;
+  font-family: var(--lh-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(143, 178, 200, 0.7);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.lh__prise.est-visible { opacity: 1; }
+
+/* Le bouton de copie est posé sur la face arrière du logo : sa position et
+   son inclinaison sont recalculées à chaque image par le script. */
+.lh__copier {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-origin: 50% 50%;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  touch-action: manipulation;
+  will-change: transform, opacity;
+  box-shadow: 0 0 18px rgba(79, 212, 255, 0.18);
+  transition: opacity 0.25s ease, box-shadow 0.25s ease;
+}
+
+.lh__copier[data-fait="1"] { box-shadow: 0 0 26px rgba(79, 212, 255, 0.45); }
+
+.lh__actions {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 4rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.lh__actions.est-visible { opacity: 1; pointer-events: auto; }
+.lh__actions:empty { display: none; }
+
+.lh__bouton {
+  font-family: var(--lh-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #d9f0fb;
+  background: rgba(6, 22, 44, 0.72);
+  border: 1px solid rgba(79, 212, 255, 0.5);
+  border-radius: 2px;
+  padding: 0.62rem 1.1rem;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.lh__bouton:hover { border-color: var(--lh-cyan); }
+.lh__bouton:focus-visible { outline: 2px solid var(--lh-cyan); outline-offset: 3px; }
+.lh__bouton[data-fait="1"] { color: var(--lh-cyan); border-color: var(--lh-cyan); }
+
+@media (prefers-reduced-motion: reduce) {
+  .lh__prise, .lh__actions { transition: none; }
 }
